@@ -6,6 +6,9 @@ import streamlit as st
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from auth import check_password
 from pptx_reader import load_topics
+from tools_data import tools_for_topic
+
+TOOLS_PAGE = "pages/5_Tools.py"
 
 st.set_page_config(page_title="Topics | LNG Topics", page_icon="📚", layout="wide")
 
@@ -41,3 +44,17 @@ if choice == "Overview":
 else:
     body = dict(sections)[choice]
     st.markdown(body)
+
+    q_number = choice.split(".", 1)[0]
+    related_tools = tools_for_topic(q_number)
+    if related_tools:
+        st.divider()
+        st.caption("🧰 Related tools:")
+        cols = st.columns([1] * len(related_tools) + [3])
+        for col, tool in zip(cols, related_tools):
+            with col:
+                st.page_link(
+                    TOOLS_PAGE,
+                    label=tool["title"],
+                    query_params={"tool": tool["slug"]},
+                )
