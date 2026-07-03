@@ -13,7 +13,10 @@ if not check_password():
     st.stop()
 
 st.title("🧰 Related Tools & Simulators")
-st.caption("Interactive apps that go deeper on specific quant methods referenced in the Topics.")
+st.caption(
+    "These are interactive **numerical libraries** — small apps that go deeper on specific "
+    "quant methods referenced in the Topics."
+)
 
 TOPICS_PAGE = "pages/1_Topics.py"
 
@@ -28,7 +31,7 @@ for tool in TOOLS:
             st.success("You jumped here from a Topic reference.")
         st.subheader(tool["title"])
 
-        st.caption("Related:")
+        st.caption("Related topics:")
         cols = st.columns([1] * len(tool["related"]) + [3])
         for col, (q, label) in zip(cols, tool["related"]):
             with col:

@@ -42,19 +42,31 @@ choice = st.sidebar.radio("Jump to topic", ["Overview"] + titles, key="topic_cho
 if choice == "Overview":
     st.markdown(intro)
 else:
-    body = dict(sections)[choice]
-    st.markdown(body)
-
     q_number = choice.split(".", 1)[0]
     related_tools = tools_for_topic(q_number)
     if related_tools:
+        with st.container(border=True):
+            st.html(
+                """
+                <div style="background: linear-gradient(90deg,#6C63FF33,#00C2A833);
+                            border-left: 6px solid #6C63FF; border-radius: 8px;
+                            padding: 12px 16px; margin-bottom: 12px;">
+                  <b>🧮 Numerical libraries for this topic</b><br/>
+                  <span style="opacity:0.85;">Interactive numerical libraries that model this
+                  topic's math in more depth — try them alongside the notes below.</span>
+                </div>
+                """
+            )
+            cols = st.columns(len(related_tools))
+            for col, tool in zip(cols, related_tools):
+                with col:
+                    st.page_link(
+                        TOOLS_PAGE,
+                        label=f"🧮 {tool['title']}",
+                        query_params={"tool": tool["slug"]},
+                        width="stretch",
+                    )
         st.divider()
-        st.caption("🧰 Related tools:")
-        cols = st.columns([1] * len(related_tools) + [3])
-        for col, tool in zip(cols, related_tools):
-            with col:
-                st.page_link(
-                    TOOLS_PAGE,
-                    label=tool["title"],
-                    query_params={"tool": tool["slug"]},
-                )
+
+    body = dict(sections)[choice]
+    st.markdown(body)
