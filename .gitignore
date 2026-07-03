@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.streamlit/secrets.toml
+.DS_Store
+
+# Never commit the real (Refinitiv-licensed) source workbooks
+*.xls
+*.xlsx
