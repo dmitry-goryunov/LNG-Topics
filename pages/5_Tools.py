@@ -79,13 +79,17 @@ TOOLS = [
         "url": "https://storage-db3cfmtmlkdv4fwgzqjidp.streamlit.app/",
         "related": [
             ("Q3", "regasification slot valuation"),
+            ("Q7", "quantity tolerance under multi-cargo SPAs"),
             ("Q9", "stochastic DP / rolling intrinsic, 1-factor storage"),
         ],
         "description": (
             "Values a storage or regas-slot asset via rolling intrinsic and 1-factor "
             "(Clewlow-Strickland) stochastic optimisation, showing how the conservative rolling-"
             "intrinsic lower bound compares to the full extrinsic value captured by stochastic "
-            "dynamic programming."
+            "dynamic programming. The same 1-factor Clewlow-Strickland engine doubles as a swing "
+            "model: where an SPA has flexibility in annual and monthly contract quantities (ACQ/MCQ "
+            "tolerance), that optionality can be valued the same way as storage — as a swing right "
+            "to flex offtake up or down within the contractual band each period."
         ),
     },
 ]
