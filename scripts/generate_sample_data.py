@@ -13,8 +13,8 @@ import pandas as pd
 
 rng = np.random.default_rng(42)
 
-# Public GitHub copy only shows price/netback data up to this date.
-MAX_DATE = pd.Timestamp("2026-05-29")
+# Public GitHub copy only shows the LNG price forward curve up to May 2029.
+MAX_DATE = pd.Timestamp("2029-05-31")
 
 
 def random_walk(n, start, drift=0.0, vol=1.0, floor=0.0):
