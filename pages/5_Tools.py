@@ -40,7 +40,7 @@ TOOLS = [
     },
     {
         "title": "Rainbow / Diversion Optionality",
-        "url": "https://spread-hedge-aqdbbqkvon6gxewpuf9z5d.streamlit.app/",
+        "url": "https://rainbow-options-4hwgd2sbshbb6t5cakamff.streamlit.app/",
         "related": "Q6 (destination flexibility and diversion optionality), Q9 (correlated curve Monte Carlo)",
         "description": (
             "Explores multi-asset \"rainbow\" option payoffs — picking the best of several basin "
