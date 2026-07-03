@@ -13,7 +13,7 @@ st.set_page_config(page_title="LNG Prices | LNG Topics", page_icon="📈", layou
 if not check_password():
     st.stop()
 
-DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "lng_prices_sample.csv"
+DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "lng_prices.csv"
 
 
 @st.cache_data
@@ -26,7 +26,7 @@ df = load_data(DATA_PATH)
 price_cols = [c for c in df.columns if c != "Date"]
 
 st.title("📈 LNG & Gas Price Benchmarks")
-st.caption("Synthetic sample data (mirrors LNG prices.xls) — illustrative only, not real market prices.")
+st.caption("Source: LNG prices.xls (Refinitiv).")
 
 hist_cols = [c for c in price_cols if "hist" in c.lower() or "indexed" in c.lower() or "spot" in c.lower()]
 fwd_cols = [c for c in price_cols if c not in hist_cols]

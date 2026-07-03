@@ -1,0 +1,12 @@
+Hub,Contract Delivery,Hub Price,ACER LNG DES Price,Economics Pre-Regas (Hub-DES),Estimated Regas Cost,Voyage Cost Delta from Montoir,Contracted Capacity %,Regas Utilization %
+Netherlands (TTF),Front Month,44.43,42.359,2.07,Gate: 1.14 EUR/MWh; Eemshaven: 1.98 EUR/MWh,0.12,95,89
+France (PEG),Front Month,43.43,42.359,1.07,Fos and Montoir: 0.71-1.45 EUR/MWh; Dunkerque: 0.66 EUR/MWh,0.0,57,33
+Italy (PSV),Front Month,45.42,43.064,2.35,Adriatic LNG: 0.6 EUR/MWh; Piombino: 2.42 EUR/MWh; GNL Italia: 1.55 EUR/MWh; Ravenna: 3.31 EUR/MWh,0.95,74,69
+Belgium (ZTP),Front Month,42.22,42.359,-0.14,Zeebrugge: 0.66 EUR/MWh,0.09,100,51
+United Kingdom (NBP),Front Month,41.61,42.359,-0.75,,-0.06,100,7
+Germany (THE),Front Month,44.69,42.359,2.33,Brunsbuttel/Wilhelmshaven starting bids: 1.95-2.45 EUR/MWh; Mukran: 0.95 EUR/MWh,0.12,65,71
+Spain (PVB),Front Month,44.33,43.064,1.27,,0.27,38,26
+Poland (VTP),Front Month,46.41,42.417,3.99,1.75 EUR/MWh,0.39,96,107
+Finland (FIN),Front Month,44.37,42.417,1.95,2.46 EUR/MWh,0.51,61,31
+Lithuania (LTU),Front Month,43.69,42.417,1.27,2025: 1.84 EUR/MWh; 2026: 1.69 EUR/MWh,0.51,67,118
+Greece (HEE),Day Ahead,44.5,43.064,1.44,0.95 EUR/MWh,0.86,80,43

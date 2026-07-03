@@ -13,7 +13,7 @@ st.set_page_config(page_title="Netback | LNG Topics", page_icon="🚢", layout="
 if not check_password():
     st.stop()
 
-DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "netback_sample.csv"
+DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "netback.csv"
 
 
 @st.cache_data
@@ -26,7 +26,7 @@ df = load_data(DATA_PATH)
 netback_cols = [c for c in df.columns if c != "Date"]
 
 st.title("🚢 LNG Netback Prices by Destination Market")
-st.caption("Synthetic sample data — illustrative only, not real market prices.")
+st.caption("Source: netback.xls (Refinitiv).")
 
 selected = st.multiselect("Markets to show", netback_cols, default=netback_cols)
 

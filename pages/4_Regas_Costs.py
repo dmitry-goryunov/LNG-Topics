@@ -14,7 +14,7 @@ st.set_page_config(page_title="Regas Costs | LNG Topics", page_icon="🏭", layo
 if not check_password():
     st.stop()
 
-DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "regas_costs_sample.csv"
+DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "regas_costs.csv"
 
 
 @st.cache_data
@@ -25,7 +25,7 @@ def load_data(path: Path) -> pd.DataFrame:
 df = load_data(DATA_PATH)
 
 st.title("🏭 European Hub LNG Delivery Economics")
-st.caption("Synthetic sample data — illustrative only, not real market prices.")
+st.caption("Snapshot as of 2026-07-01.")
 
 st.subheader("Hub price vs. DES LNG price, and pre-regasification economics")
 fig = make_subplots(specs=[[{"secondary_y": True}]])
