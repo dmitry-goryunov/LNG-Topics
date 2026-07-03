@@ -13,6 +13,9 @@ import pandas as pd
 
 rng = np.random.default_rng(42)
 
+# Public GitHub copy only shows price/netback data up to this date.
+MAX_DATE = pd.Timestamp("2026-05-29")
+
 
 def random_walk(n, start, drift=0.0, vol=1.0, floor=0.0):
     steps = rng.normal(drift, vol, n)
@@ -50,6 +53,7 @@ lng_prices.loc[lng_prices.index >= cutover, hist_cols] = np.nan
 lng_prices.loc[lng_prices.index < cutover - 20, fwd_cols] = np.nan
 lng_prices.loc[0, ["JCC Indexed", "Brent Indexed Historical"]] = np.nan
 
+lng_prices = lng_prices[lng_prices["Date (CEST)"] <= MAX_DATE]
 lng_prices.to_csv("data/lng_prices_sample.csv", index=False)
 
 # ---------------------------------------------------------------------------
@@ -72,6 +76,7 @@ for country, offset in countries.items():
     noise = rng.normal(0, 0.25, m)
     netback[country] = np.round(base + offset + noise, 3)
 
+netback = netback[netback["Date (BST)"] <= MAX_DATE]
 netback.to_csv("data/netback_sample.csv", index=False)
 
 # ---------------------------------------------------------------------------
