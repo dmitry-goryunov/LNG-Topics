@@ -27,7 +27,10 @@ redistribution of that data is restricted by the provider's subscription
 terms. Swap in your own licensed data locally by replacing the CSVs in
 `data/` (keeping the same column names) if you have the appropriate rights.
 
-The Topics notes (`data/topics.md`) are prepared study notes that cite dated
+The Topics page is parsed directly from the source deck,
+[`data/LNG_Interview_Prep_Connected_Rev_2026-07-03.pptx`](data/LNG_Interview_Prep_Connected_Rev_2026-07-03.pptx),
+via `pptx_reader.py` — there's no separate hand-maintained copy, so editing
+the deck and redeploying is enough to update the app. The notes cite dated
 market levels from public sources (IEA, Reuters/LSEG, Shell, EIA, ICE) — not
 resold data. They are not trading advice.
 
