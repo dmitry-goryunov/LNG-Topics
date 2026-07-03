@@ -31,6 +31,13 @@ The Topics notes (`data/topics.md`) are prepared study notes that cite dated
 market levels from public sources (IEA, Reuters/LSEG, Shell, EIA, ICE) — not
 resold data. They are not trading advice.
 
+## Access
+
+The app is gated behind a shared password (see `auth.py`). This is a soft
+gate meant to keep casual visitors out, not real access control — since the
+repo is public, the password is visible in source. Change `PASSWORD` in
+`auth.py` (or move it to `st.secrets`) if you need something stronger.
+
 ## Run locally
 
 ```bash

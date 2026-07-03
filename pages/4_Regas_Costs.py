@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -5,7 +6,13 @@ import plotly.graph_objects as go
 import streamlit as st
 from plotly.subplots import make_subplots
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from auth import check_password
+
 st.set_page_config(page_title="Regas Costs | LNG Topics", page_icon="🏭", layout="wide")
+
+if not check_password():
+    st.stop()
 
 DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "regas_costs_sample.csv"
 

@@ -1,9 +1,16 @@
 import re
+import sys
 from pathlib import Path
 
 import streamlit as st
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from auth import check_password
+
 st.set_page_config(page_title="Topics | LNG Topics", page_icon="📚", layout="wide")
+
+if not check_password():
+    st.stop()
 
 DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "topics.md"
 

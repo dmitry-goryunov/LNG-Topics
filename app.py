@@ -1,10 +1,15 @@
 import streamlit as st
 
+from auth import check_password
+
 st.set_page_config(
     page_title="LNG Topics",
     page_icon="🛢️",
     layout="wide",
 )
+
+if not check_password():
+    st.stop()
 
 st.title("🛢️ LNG Topics")
 
