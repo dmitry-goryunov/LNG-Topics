@@ -26,7 +26,15 @@ st.title("📚 LNG Interview Prep Topics")
 st.caption("Extracted directly from the source .pptx.")
 
 titles = [t for t, _ in sections]
-choice = st.sidebar.radio("Jump to topic", ["Overview"] + titles)
+
+query_topic = st.query_params.get("q")
+if query_topic:
+    match = next((t for t in titles if t.startswith(f"{query_topic}.")), None)
+    if match and st.session_state.get("topic_choice") != match:
+        st.session_state["topic_choice"] = match
+    st.query_params.clear()
+
+choice = st.sidebar.radio("Jump to topic", ["Overview"] + titles, key="topic_choice")
 
 if choice == "Overview":
     st.markdown(intro)

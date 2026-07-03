@@ -14,11 +14,16 @@ if not check_password():
 st.title("🧰 Related Tools & Simulators")
 st.caption("Interactive apps that go deeper on specific quant methods referenced in the Topics.")
 
+TOPICS_PAGE = "pages/1_Topics.py"
+
 TOOLS = [
     {
         "title": "XVA / CVA Adjustments",
         "url": "https://agxrz252lkxboz3ovanwn4.streamlit.app/",
-        "related": "Q9 (PFE / credit simulations, XVA metrics), Q10 (credit and performance risk)",
+        "related": [
+            ("Q9", "PFE / credit simulations, XVA metrics"),
+            ("Q10", "credit and performance risk"),
+        ],
         "description": (
             "Interactive calculator for credit valuation adjustment (CVA) and the wider XVA "
             "stack on a derivative/portfolio exposure profile. Walks through expected exposure, "
@@ -30,7 +35,10 @@ TOOLS = [
     {
         "title": "Hedging Spread Options with Static Calls/Puts",
         "url": "https://spread-hedge-aqdbbqkvon6gxewpuf9z5d.streamlit.app/",
-        "related": "Q6 (destination flexibility), Q9 (spread options — Margrabe/Kirk)",
+        "related": [
+            ("Q6", "destination flexibility"),
+            ("Q9", "spread options — Margrabe/Kirk"),
+        ],
         "description": (
             "Demonstrates static replication of a spread option (e.g. a JKM-TTF diversion spread) "
             "using a strip of vanilla calls and puts, as an alternative to dynamic delta-hedging. "
@@ -41,7 +49,10 @@ TOOLS = [
     {
         "title": "Rainbow / Diversion Optionality",
         "url": "https://rainbow-options-4hwgd2sbshbb6t5cakamff.streamlit.app/",
-        "related": "Q6 (destination flexibility and diversion optionality), Q9 (correlated curve Monte Carlo)",
+        "related": [
+            ("Q6", "destination flexibility and diversion optionality"),
+            ("Q9", "correlated curve Monte Carlo"),
+        ],
         "description": (
             "Explores multi-asset \"rainbow\" option payoffs — picking the best of several basin "
             "netbacks (e.g. max(JKM − freight, TTF − freight, local sale)) — which is the payoff "
@@ -52,7 +63,10 @@ TOOLS = [
     {
         "title": "Linear Optimisation of LNG Fleet",
         "url": "https://dmitry-goryunov.github.io/lng-fleet-sim/",
-        "related": "Q8 (shipping economics, vessel optimisation), Q9 (least-squares MC / linear programming)",
+        "related": [
+            ("Q8", "shipping economics, vessel optimisation"),
+            ("Q9", "least-squares MC / linear programming"),
+        ],
         "description": (
             "An LP-based vessel/fleet scheduling simulator: allocates a fleet of LNG carriers "
             "across cargoes and routes to maximise netback, subject to voyage time, boil-off and "
@@ -63,7 +77,10 @@ TOOLS = [
     {
         "title": "Storage Valuation for Storage & Regas",
         "url": "https://storage-db3cfmtmlkdv4fwgzqjidp.streamlit.app/",
-        "related": "Q3 (regasification slot valuation), Q9 (stochastic DP / rolling intrinsic, 1-factor storage)",
+        "related": [
+            ("Q3", "regasification slot valuation"),
+            ("Q9", "stochastic DP / rolling intrinsic, 1-factor storage"),
+        ],
         "description": (
             "Values a storage or regas-slot asset via rolling intrinsic and 1-factor "
             "(Clewlow-Strickland) stochastic optimisation, showing how the conservative rolling-"
@@ -76,6 +93,16 @@ TOOLS = [
 for tool in TOOLS:
     with st.container(border=True):
         st.subheader(tool["title"])
-        st.caption(f"Related: {tool['related']}")
+
+        st.caption("Related:")
+        cols = st.columns([1] * len(tool["related"]) + [3])
+        for col, (q, label) in zip(cols, tool["related"]):
+            with col:
+                st.page_link(
+                    TOPICS_PAGE,
+                    label=f"{q} — {label}",
+                    query_params={"q": q},
+                )
+
         st.write(tool["description"])
         st.link_button(f"Open {tool['title']} ↗", tool["url"], width="stretch", type="primary")
