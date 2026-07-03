@@ -15,7 +15,7 @@ st.set_page_config(page_title="Topics | LNG Topics", page_icon="📚", layout="w
 if not check_password():
     st.stop()
 
-DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "LNG_Interview_Prep_Connected_Rev_2026-07-03.pptx"
+DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "LNG_Structuring_Trading_Topics_Rev_2026-07-03.pptx"
 
 
 @st.cache_data
@@ -25,7 +25,7 @@ def load(path: Path):
 
 intro, sections = load(DATA_PATH)
 
-st.title("📚 LNG Interview Prep Topics")
+st.title("📚 LNG Topics")
 st.caption("Extracted directly from the source .pptx.")
 
 titles = [t for t, _ in sections]

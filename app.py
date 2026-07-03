@@ -15,7 +15,7 @@ st.title("🛢️ LNG Topics")
 
 st.markdown(
     """
-Welcome — this app collects LNG structuring/trading interview-prep notes alongside
+Welcome — this app collects LNG structuring/trading topic notes alongside
 interactive charts on LNG prices, netbacks and European regasification economics.
 
 **Use the sidebar to navigate:**

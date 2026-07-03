@@ -1,6 +1,6 @@
 # LNG Topics
 
-A Streamlit app collecting LNG structuring/trading interview-prep notes alongside
+A Streamlit app collecting LNG structuring/trading topic notes alongside
 interactive charts on LNG prices, netbacks, and European regasification economics.
 
 ## Pages
@@ -33,7 +33,7 @@ own licensed data (same column names) and update the captions in
 `pages/2_LNG_Prices.py` / `pages/3_Netback.py` accordingly.
 
 The Topics page is parsed directly from the source deck,
-[`data/LNG_Interview_Prep_Connected_Rev_2026-07-03.pptx`](data/LNG_Interview_Prep_Connected_Rev_2026-07-03.pptx),
+[`data/LNG_Structuring_Trading_Topics_Rev_2026-07-03.pptx`](data/LNG_Structuring_Trading_Topics_Rev_2026-07-03.pptx),
 via `pptx_reader.py` — there's no separate hand-maintained copy, so editing
 the deck and redeploying is enough to update the app. The notes cite dated
 market levels from public sources (IEA, Reuters/LSEG, Shell, EIA, ICE) — not

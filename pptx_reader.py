@@ -1,5 +1,5 @@
 """
-Extracts the LNG interview-prep topics directly from the source .pptx so the
+Extracts the LNG topics directly from the source .pptx so the
 Streamlit app always reflects the deck, not a hand-maintained copy.
 
 The deck follows a consistent per-slide template: a bare topic number, an
