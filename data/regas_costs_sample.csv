@@ -1,12 +1,12 @@
 Hub,Contract Delivery,Hub Price,ACER LNG DES Price,Economics Pre-Regas (Hub-DES),Estimated Regas Cost,Voyage Cost Delta from Montoir,Contracted Capacity %,Regas Utilization %
-Netherlands (TTF),Front Month,43.61,42.539,1.07,"Sample regas cost, EUR/MWh (illustrative)",-0.05,51,114
-France (PEG),Front Month,48.45,43.435,5.02,"Sample regas cost, EUR/MWh (illustrative)",-0.13,66,44
-Italy (PSV),Front Month,44.36,42.349,2.01,"Sample regas cost, EUR/MWh (illustrative)",0.33,85,41
-Belgium (ZTP),Front Month,43.19,42.63,0.56,"Sample regas cost, EUR/MWh (illustrative)",0.46,95,42
-United Kingdom (NBP),Front Month,42.78,42.18,0.6,"Sample regas cost, EUR/MWh (illustrative)",0.37,95,46
-Germany (THE),Front Month,42.63,42.359,0.27,"Sample regas cost, EUR/MWh (illustrative)",-0.03,40,84
-Spain (PVB),Front Month,45.32,42.6,2.72,"Sample regas cost, EUR/MWh (illustrative)",0.49,94,57
-Poland (VTP),Front Month,43.87,42.839,1.03,"Sample regas cost, EUR/MWh (illustrative)",-0.01,42,90
-Finland (FIN),Front Month,44.29,42.628,1.66,"Sample regas cost, EUR/MWh (illustrative)",0.07,73,53
-Lithuania (LTU),Front Month,44.42,43.004,1.42,"Sample regas cost, EUR/MWh (illustrative)",-0.08,96,40
-Greece (HEE),Day Ahead,44.91,42.462,2.45,"Sample regas cost, EUR/MWh (illustrative)",0.71,78,27
+Netherlands (TTF),Front Month,44.95,42.809,2.14,"Sample regas cost, EUR/MWh (illustrative)",0.32,96,112
+France (PEG),Front Month,43.55,42.388,1.16,"Sample regas cost, EUR/MWh (illustrative)",1.02,69,114
+Italy (PSV),Front Month,43.88,42.295,1.59,"Sample regas cost, EUR/MWh (illustrative)",0.07,71,18
+Belgium (ZTP),Front Month,44.7,43.06,1.64,"Sample regas cost, EUR/MWh (illustrative)",0.4,46,45
+United Kingdom (NBP),Front Month,43.86,42.081,1.78,"Sample regas cost, EUR/MWh (illustrative)",0.62,49,70
+Germany (THE),Front Month,44.69,42.181,2.51,"Sample regas cost, EUR/MWh (illustrative)",0.28,89,49
+Spain (PVB),Front Month,44.81,42.585,2.23,"Sample regas cost, EUR/MWh (illustrative)",1.07,55,88
+Poland (VTP),Front Month,44.21,42.656,1.55,"Sample regas cost, EUR/MWh (illustrative)",0.12,73,35
+Finland (FIN),Front Month,43.15,42.699,0.45,"Sample regas cost, EUR/MWh (illustrative)",0.36,55,11
+Lithuania (LTU),Front Month,44.45,42.864,1.59,"Sample regas cost, EUR/MWh (illustrative)",-0.03,52,44
+Greece (HEE),Day Ahead,44.04,42.579,1.46,"Sample regas cost, EUR/MWh (illustrative)",0.13,45,74

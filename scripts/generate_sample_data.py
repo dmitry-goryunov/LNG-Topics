@@ -23,34 +23,82 @@ def random_walk(n, start, drift=0.0, vol=1.0, floor=0.0):
     return np.clip(path, floor, None)
 
 
+def trend(dates, anchors, floor=0.0):
+    """Piecewise-linear interpolation through (date_str, value) anchor points."""
+    xs = np.array([pd.Timestamp(d).value for d, _ in anchors], dtype=float)
+    ys = np.array([v for _, v in anchors], dtype=float)
+    x = dates.values.astype("datetime64[ns]").astype(np.int64).astype(float)
+    return np.clip(np.interp(x, xs, ys), floor, None)
+
+
 # ---------------------------------------------------------------------------
 # 1. LNG prices sample (mirrors "LNG prices.xls" -> Data sheet)
+#
+# Shaped (not a pure random walk) to resemble real LNG/gas price history:
+# the 2021-22 European gas crisis spike, 2023-24 normalization, current
+# (mid-2026) levels anchored to the Topics deck's cited spot levels, then a
+# 2027-29 decline consistent with the deck's "supply wave" scenario (Q7/Q11).
 # ---------------------------------------------------------------------------
-dates = pd.date_range("2021-07-01", periods=98, freq="MS")
+dates = pd.date_range("2021-07-01", periods=95, freq="MS")
 n = len(dates)
-cutover = 68  # index around which "historical" turns into "forward" curve
+cutover = 61  # index of 2026-07 -- where "historical" turns into "forward" curve
 
-ttf_base = random_walk(n, start=12.0, drift=0.02, vol=2.5, floor=2.0)
-hh_base = random_walk(n, start=3.8, drift=0.01, vol=0.5, floor=1.5)
-jkm_base = ttf_base + rng.normal(2.0, 1.5, n)
+ttf_trend = trend(dates, [
+    ("2021-07-01", 12), ("2021-10-01", 25), ("2021-12-01", 33),
+    ("2022-03-01", 34), ("2022-06-01", 30), ("2022-08-01", 68),
+    ("2022-10-01", 45), ("2023-01-01", 22), ("2023-06-01", 11),
+    ("2023-12-01", 12), ("2024-06-01", 10), ("2024-12-01", 11.5),
+    ("2025-06-01", 13), ("2026-01-01", 13.5), ("2026-07-01", 14.1),
+    ("2027-01-01", 12), ("2027-07-01", 10), ("2028-01-01", 8.5),
+    ("2028-07-01", 7.8), ("2029-05-01", 7.3),
+], floor=2.0)
+
+jkm_trend = trend(dates, [
+    ("2021-07-01", 14), ("2021-10-01", 34), ("2021-12-01", 39),
+    ("2022-03-01", 36), ("2022-06-01", 34), ("2022-08-01", 72),
+    ("2022-10-01", 48), ("2023-01-01", 24), ("2023-06-01", 12.5),
+    ("2023-12-01", 13.5), ("2024-06-01", 11), ("2024-12-01", 13),
+    ("2025-06-01", 15), ("2026-01-01", 15.2), ("2026-07-01", 15.7),
+    ("2027-01-01", 13.5), ("2027-07-01", 11.5), ("2028-01-01", 10),
+    ("2028-07-01", 9.3), ("2029-05-01", 8.8),
+], floor=2.5)
+
+hh_trend = trend(dates, [
+    ("2021-07-01", 3.7), ("2021-10-01", 5.5), ("2021-12-01", 3.8),
+    ("2022-03-01", 4.9), ("2022-06-01", 7.5), ("2022-08-01", 9.0),
+    ("2022-10-01", 6.5), ("2023-01-01", 3.5), ("2023-06-01", 2.2),
+    ("2023-12-01", 2.6), ("2024-06-01", 2.0), ("2024-12-01", 2.8),
+    ("2025-06-01", 3.4), ("2026-01-01", 3.6), ("2026-07-01", 3.3),
+    ("2027-01-01", 3.6), ("2027-07-01", 3.8), ("2028-01-01", 4.0),
+    ("2028-07-01", 4.2), ("2029-05-01", 4.3),
+], floor=1.5)
+
+jcc_trend = trend(dates, [
+    ("2021-07-01", 10.4), ("2021-12-01", 11.7), ("2022-06-01", 13.5),
+    ("2022-12-01", 15.5), ("2023-06-01", 14.0), ("2023-12-01", 12.5),
+    ("2024-06-01", 11.0), ("2024-12-01", 10.3), ("2025-06-01", 10.0),
+    ("2026-01-01", 10.2), ("2026-07-01", 10.4), ("2027-07-01", 10.6),
+    ("2028-07-01", 10.8), ("2029-05-01", 11.0),
+], floor=5.0)
 
 lng_prices = pd.DataFrame({"Date (CEST)": dates})
-lng_prices["JCC Indexed"] = np.round(random_walk(n, 10.5, 0.02, 0.15, 5), 3)
-lng_prices["Brent Indexed Historical"] = np.round(lng_prices["JCC Indexed"] - rng.normal(0.2, 0.1, n), 3)
-lng_prices[" NE Asia LNG spot"] = np.round(jkm_base, 3)
-lng_prices["TTF front month hist"] = np.round(ttf_base, 3)
-lng_prices["Henry Hub front month hist"] = np.round(hh_base, 3)
-lng_prices["TTF forward"] = np.round(ttf_base + rng.normal(0, 0.8, n), 3)
-lng_prices["Henry Hub forward"] = np.round(hh_base + rng.normal(0, 0.3, n), 3)
-lng_prices["Brent Indexed forward"] = np.round(lng_prices["JCC Indexed"] + rng.normal(0, 0.5, n), 3)
-lng_prices["Nymex JKM swaps forward"] = np.round(jkm_base + rng.normal(0, 0.6, n), 3)
+lng_prices["JCC Indexed"] = np.round(jcc_trend + rng.normal(0, 0.1, n), 3)
+lng_prices["Brent Indexed Historical"] = np.round(jcc_trend - 0.2 + rng.normal(0, 0.1, n), 3)
+lng_prices[" NE Asia LNG spot"] = np.round(jkm_trend + rng.normal(0, 0.8, n), 3)
+lng_prices["TTF front month hist"] = np.round(ttf_trend + rng.normal(0, 0.8, n), 3)
+lng_prices["Henry Hub front month hist"] = np.round(hh_trend + rng.normal(0, 0.15, n), 3)
+lng_prices["TTF forward"] = np.round(ttf_trend + rng.normal(0, 0.4, n), 3)
+lng_prices["Henry Hub forward"] = np.round(hh_trend + rng.normal(0, 0.1, n), 3)
+lng_prices["Brent Indexed forward"] = np.round(jcc_trend + 0.3 + rng.normal(0, 0.2, n), 3)
+lng_prices["Nymex JKM swaps forward"] = np.round(jkm_trend + rng.normal(0, 0.4, n), 3)
 
-# Emulate the real file: historical cols populated early, forward cols later
+# Emulate the real file: historical cols populated up to "today", forward
+# cols appear starting ~1 year before "today" and continue to the last tenor.
 hist_cols = ["JCC Indexed", "Brent Indexed Historical", " NE Asia LNG spot",
              "TTF front month hist", "Henry Hub front month hist"]
 fwd_cols = ["TTF forward", "Henry Hub forward", "Brent Indexed forward", "Nymex JKM swaps forward"]
-lng_prices.loc[lng_prices.index >= cutover, hist_cols] = np.nan
-lng_prices.loc[lng_prices.index < cutover - 20, fwd_cols] = np.nan
+lng_prices.loc[lng_prices.index > cutover, hist_cols] = np.nan
+lng_prices.loc[lng_prices.index < cutover - 12, fwd_cols] = np.nan
 lng_prices.loc[0, ["JCC Indexed", "Brent Indexed Historical"]] = np.nan
 
 lng_prices = lng_prices[lng_prices["Date (CEST)"] <= MAX_DATE]
