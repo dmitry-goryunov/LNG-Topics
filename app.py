@@ -27,6 +27,9 @@ interactive charts on LNG prices, netbacks and European regasification economics
 - **🚢 Netback** — weekly LNG netback prices by destination market/port.
 - **🏭 Regas Costs** — European hub delivery economics and regas terminal
   utilization.
+- **🧰 Tools** — links to interactive simulators for XVA/CVA, spread-option
+  hedging, diversion optionality, LNG fleet optimisation and storage
+  valuation, each tied back to the relevant Topic.
 
 > **Data note:** the price charts use the real underlying data (`LNG prices.xls`,
 > `netback.xls`, and a regas-cost snapshot). The Topics notes cite dated market
