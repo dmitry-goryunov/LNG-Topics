@@ -30,6 +30,9 @@ interactive charts on LNG prices, netbacks and European regasification economics
 - **🧰 Tools** — interactive **numerical libraries** for XVA/CVA, spread-option
   hedging, diversion optionality, LNG fleet optimisation and storage
   valuation, each tied back to the relevant Topic.
+- **🚢 Fleet Portfolio** — generated results from the `lng-fleet-sim` v8 Monte
+  Carlo engine: strategy comparison, hedge sweep, destination-flexibility
+  premia and an acquisition case, referenced as worked examples in Q6/Q7.
 
 > **Data note:** the price charts use the real underlying data (`LNG prices.xls`,
 > `netback.xls`, and a regas-cost snapshot). The Topics notes cite dated market

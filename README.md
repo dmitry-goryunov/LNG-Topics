@@ -16,6 +16,12 @@ interactive charts on LNG prices, netbacks, and European regasification economic
 - **Netback** — weekly LNG netback prices by destination market/port.
 - **Regas Costs** — European hub delivery economics and regas terminal
   utilization.
+- **Tools** — links to related interactive numerical libraries (XVA/CVA,
+  spread-option hedging, diversion optionality, fleet optimisation, storage
+  valuation), cross-linked with the Topics they support.
+- **Fleet Portfolio** — generated results from the `lng-fleet-sim` v8 Monte
+  Carlo engine (`data/fleet_results.json`): strategy comparison, hedge
+  sweep, destination-flexibility premia, and an acquisition case.
 
 ## Data
 
@@ -43,8 +49,9 @@ resold data. They are not trading advice.
 
 The app is gated behind a shared password (see `auth.py`). This is a soft
 gate meant to keep casual visitors out, not real access control — since the
-repo is public, the password is visible in source. Change `PASSWORD` in
-`auth.py` (or move it to `st.secrets`) if you need something stronger.
+repo is public, the fallback password (`"pass"`) is visible in source. Set an
+`app_password` secret in Streamlit Cloud's Secrets manager (or a local
+`.streamlit/secrets.toml`, gitignored) to override it.
 
 ## Run locally
 

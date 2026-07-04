@@ -23,12 +23,25 @@ def load_data(path: Path) -> pd.DataFrame:
 
 
 df = load_data(DATA_PATH)
+
+EXPECTED_COLS = {
+    "Date", "Japan", "China", "South Korea", "Chinese Taipei", "India",
+    "United Kingdom", "France", "Belgium", "Spain", "Turkey",
+    "Mexico (Altamira)", "Mexico (Manzanillo)", "Argentina",
+    "Brazil (Salvador)", "Egypt (Ain Sukhna)",
+}
+missing = EXPECTED_COLS - set(df.columns)
+if missing:
+    st.error(f"netback.csv is missing expected column(s): {sorted(missing)}")
+    st.stop()
+
 netback_cols = [c for c in df.columns if c != "Date"]
 
 st.title("🚢 LNG Netback Prices by Destination Market")
 st.caption("Source: netback.xls (Refinitiv).")
 
-selected = st.multiselect("Markets to show", netback_cols, default=netback_cols)
+DEFAULT_MARKETS = ["Japan", "China", "United Kingdom", "Spain", "Brazil (Salvador)"]
+selected = st.multiselect("Markets to show", netback_cols, default=DEFAULT_MARKETS)
 
 fig = go.Figure()
 for col in selected:

@@ -19,11 +19,11 @@ DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "LNG_Structuring_T
 
 
 @st.cache_data
-def load(path: Path):
+def load(path: Path, mtime: float):
     return load_topics(path)
 
 
-intro, sections = load(DATA_PATH)
+intro, sections = load(DATA_PATH, DATA_PATH.stat().st_mtime)
 
 st.title("📚 LNG Topics")
 st.caption("Extracted directly from the source .pptx.")
@@ -70,3 +70,23 @@ else:
 
     body = dict(sections)[choice]
     st.markdown(body)
+
+    WORKED = {
+        "Q6": (
+            "**Worked example (lng-fleet-sim v8, seed 42, 20k paths).** Two-stage re-routing of "
+            "three swing ships adds **+$3.68M** E[P&L] (95% CI [3.62, 3.74]) over fixed routes; "
+            "Ship 5 and Ship 6 switch in ~78–81% of paths because their configured defaults are "
+            "dominated at current forwards. The analytic switch premium and the two-stage uplift "
+            "measure the same flexibility — never add them."
+        ),
+        "Q7": (
+            "**Worked example (lng-fleet-sim v8).** The acquisition case flips from **+$25.6M gross** "
+            "to **+$10.1M net** once charter hire and positioning enter ($15.5M at $75k/day), with "
+            "net marginal CVaR5 of −$2.9M and a break-even TC rate of ~$131k/day — assumption 5 "
+            "(freight) and assumption 7 (contractual/cost) dominate the answer."
+        ),
+    }
+    if q_number in WORKED:
+        with st.expander("🧮 Worked example from the fleet optimiser"):
+            st.markdown(WORKED[q_number])
+            st.page_link("pages/6_Fleet_Portfolio.py", label="Open Fleet Portfolio →")

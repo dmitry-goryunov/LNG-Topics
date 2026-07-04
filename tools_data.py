@@ -49,18 +49,21 @@ TOOLS = [
         ),
     },
     {
-        "slug": "fleet-lp",
-        "title": "Linear Optimisation of LNG Fleet",
-        "url": "https://dmitry-goryunov.github.io/lng-fleet-sim/",
+        "slug": "fleet-sim",
+        "title": "Stochastic LNG Fleet Portfolio Optimiser",
+        "url": "https://github.com/dmitry-goryunov/lng-fleet-sim",
         "related": [
-            ("Q8", "shipping economics, vessel optimisation"),
-            ("Q9", "least-squares MC / linear programming"),
+            ("Q6", "destination flexibility, two-stage re-routing"),
+            ("Q7", "portfolio valuation assumptions"),
+            ("Q8", "freight as a stochastic netback input"),
+            ("Q9", "correlated curve Monte Carlo"),
         ],
         "description": (
-            "An LP-based vessel/fleet scheduling simulator: allocates a fleet of LNG carriers "
-            "across cargoes and routes to maximise netback, subject to voyage time, boil-off and "
-            "charter constraints — the linear-programming counterpart to the deck's vessel "
-            "optimisation levers (triangulation, Panama vs. Cape routing, charter mix)."
+            "Monte Carlo two-stage portfolio simulation for an LNG carrier fleet: correlated "
+            "GBM price paths with regime-switching correlations, a mean-reverting freight index, "
+            "canal-disruption events, tiered hedge sweep, and destination-switch premia with "
+            "bootstrap confidence intervals. The v8 engine derives every published number from "
+            "code (see the Fleet Portfolio page in this app for the generated results)."
         ),
     },
     {
