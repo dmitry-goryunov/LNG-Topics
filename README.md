@@ -22,6 +22,10 @@ interactive charts on LNG prices, netbacks, and European regasification economic
 - **Fleet Portfolio** — generated results from the `lng-fleet-sim` v8 Monte
   Carlo engine (`data/fleet_results.json`): strategy comparison, hedge
   sweep, destination-flexibility premia, and an acquisition case.
+- **Example LNG Contracts** — links out to a companion app, the
+  [LNG SPA Economic Terms Comparison](https://lng-contracts-pa6739uczcskttekanjk9p.streamlit.app/)
+  ([source](https://github.com/dmitry-goryunov/lng-contracts)), which compares real Driftwood
+  LNG and Cheniere Sabine Pass SPAs slide-by-slide, RAG-scored by commercial driver.
 
 ## Data
 
